@@ -53,5 +53,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>TBD</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>TBD</string>
 </dict>
 </plist>
