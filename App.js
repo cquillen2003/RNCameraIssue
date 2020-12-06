@@ -7,7 +7,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageUrl: null
+      imageUrl: null,
+      mimeTypes: ['image/jpeg']
     };
     this.getPhotos = this.getPhotos.bind(this);
   }
@@ -19,12 +20,23 @@ class App extends Component {
       });
       var imageUrl = res.edges[0].node.image.uri;
 
+      // Try reformatting url
+      // https://github.com/joltup/rn-fetch-blob/issues/227
+      var appleId = imageUrl.substring(5, 41);
+      var ext = 'JPG';
+      var imageUrl2 = `assets-library://asset/asset.${ext}?id=${appleId}&ext=${ext}`;
+
+      console.log(imageUrl);
+      console.log(imageUrl2);
+
       this.setState({
-        imageUrl: imageUrl
+        imageUrl: imageUrl2
       });
 
-      var imageBase64 = await RNFS.readFile(imageUrl, 'base64');
+      var imageBase64 = await RNFS.readFile(imageUrl2, 'base64');
       console.log(imageBase64);
+      // Getting same error using imageUrl and ImageUrl2
+      // Error: ENOENT: no such file or directory, open 'assets-library://asset/asset.JPG?id=CC95F08C-88C3-4012-9D6D-64A413D254B3&ext=JPG'
     }
     catch (error) {
       console.log(error);
