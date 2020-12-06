@@ -10,6 +10,8 @@ target 'RNCameraIssue' do
 
   pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
 
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+
   target 'RNCameraIssueTests' do
     inherit! :complete
     # Pods for testing
